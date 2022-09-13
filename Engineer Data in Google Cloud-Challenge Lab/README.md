@@ -1,5 +1,12 @@
+# Engineer Data in Google Cloud: Challenge Lab
 
-`
+### Task 1: Clean your training data
+
+#### Navigation menu -> BigQuery
+
+
+```sql=
+-- create table
 CREATE OR REPLACE TABLE
 taxirides.taxi_training_data_800 AS
 SELECT
@@ -31,10 +38,13 @@ AND dropoff_latitude > 40
 AND dropoff_latitude < 45
 -- Ensure passenger_count is greater than 4
 AND passenger_count > 4
-`
+```
 
-`
-create or replace MODEL taxirides.fare_model_236
+### Task 2: Create a BQML model
+
+```sql=
+-- create model
+CREATE or REPLACE MODEL taxirides.fare_model_236
 -- TRANSFORM() clause will be passed to the model
 TRANSFORM(
 -- * EXCEPT(feature_to_leave_out) to pass some or all of the features without explicitly calling them
@@ -44,11 +54,18 @@ ST_Distance(ST_GeogPoint(pickuplon, pickuplat), ST_GeogPoint(dropofflon, dropoff
 CAST(EXTRACT(DAYOFWEEK FROM pickup_datetime) AS STRING) AS dayofweek, 
 CAST(EXTRACT(HOUR FROM pickup_datetime) AS STRING) AS hourofday
 )
+--  RMSE of 10 or less to complete the task
 OPTIONS(input_label_cols=['fare_amount_252'], model_type='linear_reg')
 AS
 SELECT * FROM taxirides.taxi_training_data_800
-`
-`
-create or replace table taxirides.2015_fare_amount_predictions AS
+```
+
+### Task 3: Perform a batch prediction on new data
+
+```sql=
+-- create tabe
+CREATE or REPLACE table taxirides.2015_fare_amount_predictions AS
+-- Use ML.PREDICT and your model to predict Fare amount and store your results
 SELECT * FROM ML.PREDICT(MODEL taxirides.fare_model_236,(SELECT * FROM taxirides.report_prediction_data))
-`
+```
+
