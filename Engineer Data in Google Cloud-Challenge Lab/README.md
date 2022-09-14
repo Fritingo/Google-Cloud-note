@@ -1,5 +1,7 @@
 # Engineer Data in Google Cloud: Challenge Lab
 
+lab: https://www.cloudskillsboost.google/focuses/12379?parent=catalog
+
 ### Task 1: Clean your training data
 
 #### Navigation menu -> BigQuery

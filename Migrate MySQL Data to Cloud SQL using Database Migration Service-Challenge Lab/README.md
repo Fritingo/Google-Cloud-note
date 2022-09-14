@@ -1,5 +1,7 @@
 # Migrate MySQL Data to Cloud SQL using Database Migration Service: Challenge Lab
 
+lab: https://www.cloudskillsboost.google/focuses/20393?parent=catalog
+
 ### Task 1. Configure a Database Migration Service connection profile for a stand-alone MySQL database
 
 #### Database Migration API -> Enable
@@ -17,7 +19,7 @@
 | Username | admin |
 | Password | changeme |
 | *hostname | changeme |
-| other | default |
+| others | default |
 
 
  
