@@ -13,3 +13,5 @@ region:us-central1-a
 #### create BigQuery dataset
 `bq mk <dataset name>`
 
+#### connect instance SSH
+`gcloud compute ssh <instance> --zone us-central1-a`
